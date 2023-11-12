@@ -13,3 +13,5 @@ podman run --rm -v $PWD/wheelhouse:/wheelhouse \
                 -e NPROCS=3 -e STDCXX=17 -e PYVER=cp311 \
                 quay.io/pypa/manylinux2014_x86_64 /app/build.sh
 ```
+
+The image built from `Runtime.Dockerfile` is published at `https://hub.docker.com/repository/docker/agoose77/cppyy-wheels`
