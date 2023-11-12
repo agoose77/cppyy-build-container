@@ -24,27 +24,28 @@ export PATH="/opt/build-venv/bin:$PATH"
 python3 -m pip install wheel build
 pushd ./cppyy-backend/cling 
 python3 create_src_directory.py
-python3 -m build . -o /tmp/wheels/
+python3 -m build . -o /wheelhouse/
 popd
-auditwheel repair /tmp/wheels/cppyy-cling*.whl --plat "$PLAT" -w /wheelhouse
     
 # Install cppyy-cling, build cppyy-backend without isolation and don't check versions
-python3 -m pip install /wheelhouse/cppyy-cling*.whl
+python3 -m pip install /wheelhouse/cppyy_cling*.whl
 pushd ./cppyy-backend/clingwrapper 
-python3 -m build -n -x -w . -o /tmp/wheels/
+python3 -m build -n -x -w . -o /wheelhouse/
 popd
-auditwheel repair /tmp/wheels/cppyy_backend*.whl --plat "$PLAT" -w /wheelhouse
 
 # Install cppyy-backend, build CPyCppyy
 python3 -m pip install /wheelhouse/cppyy_backend*.whl
 pushd ./CPyCppyy
-python3 -m build -n -x -w . -o /tmp/wheels/
+python3 -m build -n -x -w . -o /wheelhouse/
 popd
-auditwheel repair /tmp/wheels/CPyCppyy*.whl --plat "$PLAT" -w /wheelhouse
 
 # Install CPyCppyy, build cppyy, install cppyy (pure Python)
 python3 -m pip install /wheelhouse/CPyCppyy*.whl
 pushd ./cppyy 
-python3 -m build -n -x -w . -o /wheelhouse
+python3 -m build -n -x -w . -o /wheelhouse/
 popd
 
+
+#auditwheel repair /tmp/wheels/cppyy_cling*.whl --plat "$PLAT" -w /wheelhouse
+#auditwheel repair /tmp/wheels/cppyy_backend*.whl --plat "$PLAT" -w /wheelhouse
+#auditwheel repair /tmp/wheels/CPyCppyy*.whl --plat "$PLAT" -w /wheelhouse
