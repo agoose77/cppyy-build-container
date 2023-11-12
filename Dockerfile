@@ -41,4 +41,4 @@ RUN python3 -m pip install /wheels/CPyCppyy* && \
     env -C ./cppyy python3 -m build -n -x -w . -o /wheels/
 
 RUN python3 -m pip install /wheels/cppyy-*.whl
-
+ENTRYPOINT ["/usr/bin/bash"]
