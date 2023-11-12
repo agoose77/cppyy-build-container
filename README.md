@@ -1,6 +1,10 @@
 # cppyy Build Container
 
-This repo contains a Dockerfile for building cppyy on Ubuntu. It also provides a build script to build cppyy on a manylinux image.
+This repo contains:
+1. a Dockerfile for building cppyy on Ubuntu. 
+2. a build script for building cppyy on a manylinux image, and associated trivial `Runtime.Dockerfile` to embed these in an OCI archive.
+
+It's convenient to use the cppyy wheels in an existing container / CI system, rather than run the `Dockerfile` derived container. As such, a manylinux-container aware build-script can be used to generate manylinux compatible wheels, which are then bundled into an OCI image using `Runtime.Docker`. 
 
 ## Manylinux Build
 ```bash
