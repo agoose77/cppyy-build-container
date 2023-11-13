@@ -45,7 +45,7 @@ pushd ./cppyy
 python3 -m build -n -x -w . -o /wheelhouse/
 popd
 
-
+## Auditwheel doesn't like the cppyy wheels; they contain some libraries that appear to rely on the main module to set the search path (i.e. not RPATH)
 #auditwheel repair /tmp/wheels/cppyy_cling*.whl --plat "$PLAT" -w /wheelhouse
 #auditwheel repair /tmp/wheels/cppyy_backend*.whl --plat "$PLAT" -w /wheelhouse
 #auditwheel repair /tmp/wheels/CPyCppyy*.whl --plat "$PLAT" -w /wheelhouse
